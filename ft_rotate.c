@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/19 16:18:20 by fbachman          #+#    #+#             */
-/*   Updated: 2026/05/21 13:10:42 by fbachman         ###   ########.fr       */
+/*   Created: 2026/06/17 14:27:59 by fbachman          #+#    #+#             */
+/*   Updated: 2026/06/18 10:07:57 by fbachman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-char	*ft_strdup(const char *s)
+int	ft_rotate(t_stack *stack)
 {
-	char	*d;
-	size_t	len;
+	t_node	*node;
 
-	len = ft_strlen(s);
-	d = malloc((len + 1) * sizeof(char));
-	if (!d)
-		return (NULL);
-	ft_strlcpy(d, s, len + 1);
-	return (d);
+	if (!stack || stack->size < 2)
+		return (0);
+	node = ft_pop_node(stack, stack->head);
+	if (!node)
+		return (0);
+	return (ft_push_back(stack, node));
 }

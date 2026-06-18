@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_rrotate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/26 11:41:27 by fbachman          #+#    #+#             */
-/*   Updated: 2026/05/26 12:33:05 by fbachman         ###   ########.fr       */
+/*   Created: 2026/06/17 14:28:02 by fbachman          #+#    #+#             */
+/*   Updated: 2026/06/18 09:51:17 by fbachman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-t_list	*ft_lstlast(t_list *lst)
+int	ft_rrotate(t_stack *stack)
 {
-	if (!lst)
-		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
+	t_node	*node;
+
+	if (!stack || stack->size < 2)
+		return (0);
+	node = ft_pop_node(stack, stack->tail);
+	if (!node)
+		return (0);
+	return (ft_push_front(stack, node));
 }

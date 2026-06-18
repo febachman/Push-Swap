@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_pop_node.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/18 15:19:16 by fbachman          #+#    #+#             */
-/*   Updated: 2026/05/27 13:50:25 by fbachman         ###   ########.fr       */
+/*   Created: 2026/06/18 08:55:59 by fbachman          #+#    #+#             */
+/*   Updated: 2026/06/18 09:48:23 by fbachman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+t_node	*ft_pop_node(t_stack *stack, t_node *node)
 {
-	size_t	i;
-
-	i = 0;
-	while (i < n)
-	{
-		if (s1[i] == '\0' || (unsigned char)s1[i] != (unsigned char)s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		i++;
-	}
-	return (0);
+	if (!stack || !node)
+		return (NULL);
+	if (node == stack->head)
+		stack->head = node->next;
+	if (node == stack->tail)
+		stack->tail = node->prev;
+	if (node->prev)
+		node->prev->next = node->next;
+	if (node->next)
+		node->next->prev = node->prev;
+	node->next = NULL;
+	node->prev = NULL;
+	stack->size--;
+	return (node);
 }

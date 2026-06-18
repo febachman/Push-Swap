@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/18 09:49:59 by fbachman          #+#    #+#             */
-/*   Updated: 2026/05/27 09:49:46 by fbachman         ###   ########.fr       */
+/*   Created: 2026/06/17 14:28:04 by fbachman          #+#    #+#             */
+/*   Updated: 2026/06/18 11:13:19 by fbachman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-int	ft_isdigit(int c)
+int	ft_swap(t_stack *stack)
 {
-	return (c >= '0' && c <= '9');
+	t_node	*node;
+
+	if (!stack || stack->size < 2)
+		return (0);
+	node = ft_pop_node(stack, stack->head->next);
+	if (!node)
+		return (0);
+	return (ft_push_front(stack, node));
 }

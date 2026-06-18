@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_push_back.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/18 13:10:12 by fbachman          #+#    #+#             */
-/*   Updated: 2026/05/28 09:59:01 by fbachman         ###   ########.fr       */
+/*   Created: 2026/06/18 08:56:05 by fbachman          #+#    #+#             */
+/*   Updated: 2026/06/18 10:12:55 by fbachman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	ft_bzero(void *s, size_t n)
+int	ft_push_back(t_stack *stack, t_node *node)
 {
-	size_t			i;
-	unsigned char	*str;
-
-	i = 0;
-	str = (unsigned char *)s;
-	while (i < n)
-		str[i++] = 0;
+	if (!stack || !node)
+		return (0);
+	if (stack->size == 0)
+	{
+		stack->head = node;
+		stack->tail = node;
+	}
+	else
+	{
+		node->prev = stack->tail;
+		stack->tail->next = node;
+		stack->tail = node;
+	}
+	stack->size++;
+	return (1);
 }

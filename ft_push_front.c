@@ -1,40 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_push_front.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/18 11:57:20 by fbachman          #+#    #+#             */
-/*   Updated: 2026/05/25 11:25:15 by fbachman         ###   ########.fr       */
+/*   Created: 2026/06/18 09:24:17 by fbachman          #+#    #+#             */
+/*   Updated: 2026/06/18 10:12:34 by fbachman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+int	ft_push_front(t_stack *stack, t_node *node)
 {
-	unsigned char		*d;
-	const unsigned char	*s;
-
-	d = (unsigned char *)dest;
-	s = (const unsigned char *)src;
-	if (!dest || !src || src == dest || n == 0)
-		return (dest);
-	if (d < s)
+	if (!stack || !node)
+		return (0);
+	if (stack->size == 0)
 	{
-		while (n > 0)
-		{
-			*d = *s;
-			d++;
-			s++;
-			n--;
-		}
+		stack->head = node;
+		stack->tail = node;
 	}
-	if (d > s)
+	else
 	{
-		while (n-- > 0)
-			d[n] = s[n];
+		node->next = stack->head;
+		stack->head->prev = node;
+		stack->head = node;
 	}
-	return (dest);
+	stack->size++;
+	return (1);
 }
