@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   op_push.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 14:27:57 by fbachman          #+#    #+#             */
-/*   Updated: 2026/06/18 11:08:15 by fbachman         ###   ########.fr       */
+/*   Updated: 2026/06/19 09:21:20 by fbachman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,16 @@ int	ft_push(t_stack *dest, t_stack *src)
 	if (!node)
 		return (0);
 	return (ft_push_front(dest, node));
+}
+
+void	pa(t_stack *a, t_stack *b)
+{
+	if (ft_push(a, b))
+		write(1, "pa\n", 3);
+}
+
+void	pb(t_stack *b, t_stack *a)
+{
+	if (ft_push(b, a))
+		write(1, "pb\n", 3);
 }
