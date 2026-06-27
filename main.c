@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: made-luc <made-luc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 08:27:08 by fbachman          #+#    #+#             */
-/*   Updated: 2026/06/27 14:26:52 by made-luc         ###   ########.fr       */
+/*   Updated: 2026/06/27 16:18:39 by fbachman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,3 +67,12 @@ int main(int argc, char **argv)
     // 4. Free memory and exit
     return (0);
 }
+
+double disorder = ft_compute_disorder(&stack_a);
+
+if (disorder < 0.2)
+    ft_execute_simple(&stack_a, &stack_b);
+else if (disorder >= 0.2 && disorder < 0.5)
+    ft_execute_medium(&stack_a, &stack_b);
+else
+    ft_execute_complex(&stack_a, &stack_b);
