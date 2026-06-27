@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pop_node.c                                      :+:      :+:    :+:   */
+/*   op_push.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/18 08:55:59 by fbachman          #+#    #+#             */
-/*   Updated: 2026/06/18 09:48:23 by fbachman         ###   ########.fr       */
+/*   Created: 2026/06/17 14:27:57 by fbachman          #+#    #+#             */
+/*   Updated: 2026/06/26 18:11:41 by fbachman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_node	*ft_pop_node(t_stack *stack, t_node *node)
+int	ft_push(t_stack *dest, t_stack *src)
 {
-	if (!stack || !node)
-		return (NULL);
-	if (node == stack->head)
-		stack->head = node->next;
-	if (node == stack->tail)
-		stack->tail = node->prev;
-	if (node->prev)
-		node->prev->next = node->next;
-	if (node->next)
-		node->next->prev = node->prev;
-	node->next = NULL;
-	node->prev = NULL;
-	stack->size--;
-	return (node);
+	t_node	*node;
+
+	if (!src || src->size == 0 || !dest)
+		return (0);
+	node = ft_pop_node(src, src->head);
+	if (!node)
+		return (0);
+	return (ft_push_front(dest, node));
+}
+
+void	ft_pa(t_stack *a, t_stack *b)
+{
+	if (ft_push(a, b))
+		write(1, "pa\n", 3);
+}
+
+void	ft_pb(t_stack *a, t_stack *b)
+{
+	if (ft_push(b, a))
+		write(1, "pb\n", 3);
 }

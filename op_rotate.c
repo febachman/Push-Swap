@@ -1,25 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   op_rotate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/17 14:27:57 by fbachman          #+#    #+#             */
-/*   Updated: 2026/06/18 11:08:15 by fbachman         ###   ########.fr       */
+/*   Created: 2026/06/17 14:27:59 by fbachman          #+#    #+#             */
+/*   Updated: 2026/06/27 11:53:08 by fbachman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_push(t_stack *dest, t_stack *src)
+int	ft_rotate(t_stack *stack)
 {
 	t_node	*node;
 
-	if (!src || src->size == 0 || !dest)
+	if (!stack || stack->size < 2)
 		return (0);
-	node = ft_pop_node(src, src->head);
+	node = ft_pop_node(stack, stack->head);
 	if (!node)
 		return (0);
-	return (ft_push_front(dest, node));
+	return (ft_push_back(stack, node));
+}
+
+void	ft_ra(t_stack *a)
+{
+	if (ft_rotate(a))
+		write(1, "ra\n", 3);
+}
+
+void	ft_rb(t_stack *b)
+{
+	if (ft_rotate(b))
+		write(1, "rb\n", 3);
+}
+
+void	ft_rr(t_stack *a, t_stack *b)
+{
+	if (a && a->size >= 2 && b && b->size >= 2)
+	{
+		ft_rotate(a);
+		ft_rotate(b);
+		write(1, "rr\n", 3);
+	}
 }
