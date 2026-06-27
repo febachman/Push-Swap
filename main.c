@@ -6,7 +6,7 @@
 /*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 08:27:08 by fbachman          #+#    #+#             */
-/*   Updated: 2026/06/25 08:28:21 by fbachman         ###   ########.fr       */
+/*   Updated: 2026/06/26 18:54:14 by fbachman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,36 @@ int main(int argc, char **argv)
     // sort_small(&stack_a);
 
     // Don't forget to free the parsed_array and stack nodes before exiting!
+    return (0);
+}
+
+int main(int argc, char **argv)
+{
+    t_stack a;
+    t_stack b;
+    double  disorder;
+
+    // 1. Parsing & Initialization (Your colleague's part)
+    if (!ft_parse_and_populate(&a, argc, argv))
+        return (ft_error());
+
+    // 2. Measure disorder BEFORE any moves are made
+    disorder = ft_compute_disorder(&a);
+    // Depending on your subject requirements, you might need to print it here:
+    // printf("Initial disorder: %f\n", disorder);
+
+    // 3. Sorting execution (Your part)
+    if (a.size == 2)
+        ft_sa(&a);
+    else if (a.size == 3)
+        ft_sort_three(&a);
+    else if (a.size == 4)
+        ft_sort_four(&a, &b);
+    else if (a.size == 5)
+        ft_sort_five(&a, &b);
+    else
+        ft_big_sort(&a, &b); // What you will tackle next!
+
+    // 4. Free memory and exit
     return (0);
 }

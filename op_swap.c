@@ -6,7 +6,7 @@
 /*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 14:28:04 by fbachman          #+#    #+#             */
-/*   Updated: 2026/06/19 09:23:40 by fbachman         ###   ########.fr       */
+/*   Updated: 2026/06/27 11:55:02 by fbachman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,35 @@ int	ft_swap(t_stack *stack)
 	return (ft_push_front(stack, node));
 }
 
-void	sa(t_stack *a)
+void	ft_sa(t_stack *a)
 {
 	if (ft_swap(a))
 		write(1, "sa\n", 3);
 }
 
-void	sb(t_stack *b)
+void	ft_sb(t_stack *b)
 {
 	if (ft_swap(b))
 		write(1, "sb\n", 3);
 }
 
-void	ss(t_stack *a, t_stack *b)
+void	ft_ss(t_stack *a, t_stack *b)
 {
 	int	swap_a;
 	int	swap_b;
 
 	swap_a = ft_swap(a);
 	swap_b = ft_swap(b);
-	if (swap_a || swap_b)
+	if (swap_a && swap_b)
 		write(1, "ss\n", 3);
+}
+
+void	ft_ss(t_stack *a, t_stack *b)
+{
+	if (a && a->size >= 2 && b && b->size >= 2)
+	{
+		ft_swap(a);
+		ft_swap(b);
+		write(1, "ss\n", 3);
+	}
 }

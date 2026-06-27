@@ -1,37 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op_push.c                                          :+:      :+:    :+:   */
+/*   disorder_metric.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/17 14:27:57 by fbachman          #+#    #+#             */
-/*   Updated: 2026/06/26 18:11:41 by fbachman         ###   ########.fr       */
+/*   Created: 2026/06/27 13:07:57 by fbachman          #+#    #+#             */
+/*   Updated: 2026/06/27 14:14:56 by fbachman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_push(t_stack *dest, t_stack *src)
-{
-	t_node	*node;
-
-	if (!src || src->size == 0 || !dest)
-		return (0);
-	node = ft_pop_node(src, src->head);
-	if (!node)
-		return (0);
-	return (ft_push_front(dest, node));
-}
-
-void	ft_pa(t_stack *a, t_stack *b)
-{
-	if (ft_push(a, b))
-		write(1, "pa\n", 3);
-}
-
-void	ft_pb(t_stack *a, t_stack *b)
-{
-	if (ft_push(b, a))
-		write(1, "pb\n", 3);
-}
