@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: made-luc <made-luc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 13:22:56 by fbachman          #+#    #+#             */
-/*   Updated: 2026/06/27 11:46:00 by fbachman         ###   ########.fr       */
+/*   Updated: 2026/07/01 14:06:11 by made-luc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define PUSH_SWAP_H
 
 # include "libft.h"
+# include <stdbool.h>
+# include <limits.h>
+# include <stdio.h>
 
 //structs
 typedef struct s_node
@@ -29,6 +32,24 @@ typedef struct s_stack
 	t_node	*tail;
 	int		size;
 }			t_stack;
+
+//parsing
+
+typedef enum e_strategy
+{
+	SIMPLE,
+	MEDIUM,
+	COMPLEX,
+	ADAPTIVE
+}	t_strategy;
+
+typedef struct s_parsing
+{
+	t_strategy	strategy;
+	bool		bench;
+	bool		has_strategy;
+	bool		seen_number;
+}	t_parsing;
 
 //operations
 int		ft_push(t_stack *dest, t_stack *src);
