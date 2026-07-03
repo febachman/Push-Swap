@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: made-luc <made-luc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 13:22:56 by fbachman          #+#    #+#             */
-/*   Updated: 2026/07/01 16:25:09 by fbachman         ###   ########.fr       */
+/*   Updated: 2026/07/03 10:53:06 by made-luc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,17 @@ typedef struct s_parsing
 	bool		has_strategy;
 	bool		seen_number;
 }	t_parsing;
+
+void	init_parsing_config(t_parsing *parsing);
+int		parse_strategy_flag(char *arg, t_parsing *parsing);
+int		parse_bench_flag(char *arg, t_parsing *parsing);
+int		parse_flag(char *arg, t_parsing *parsing);
+
+int		is_valid_number(char *token);
+int		ft_atol_checked(char *str, int *out);
+int		ft_stack_has_value(t_stack *stack, int value);
+int		parse_number_token(char *token, t_stack *stack);
+int		parse_args(int argc, char **argv, t_stack *a, t_parsing *parsing);
 
 //operations
 int		ft_push(t_stack *dest, t_stack *src);

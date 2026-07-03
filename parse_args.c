@@ -6,28 +6,11 @@
 /*   By: made-luc <made-luc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 14:06:41 by made-luc          #+#    #+#             */
-/*   Updated: 2026/07/01 14:08:28 by made-luc         ###   ########.fr       */
+/*   Updated: 2026/07/03 09:59:46 by made-luc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include <stdbool.h>
-#include <limits.h>
-#include <stdio.h>
-
 #include "push_swap.h"
-
-int	parse_number_token(char *token, t_dlist **a)
-{
-	int	value;
-
-	if (!is_valid_number(token))
-		return (1);
-	if (ft_atol_checked(token, &value))
-		return (1);
-	stack_add_back(a, value);
-	return (0);
-}
 
 int	is_valid_number(char *token)
 {
@@ -83,5 +66,43 @@ int	ft_atol_checked(char *str, int *out)
 		i++;
 	}
 	*out = (int)(num * sign);
+	return (0);
+}
+
+int	ft_stack_has_value(t_stack *stack, int value)
+{
+	t_node	*cur;
+
+	if (!stack)
+		return (0);
+	cur = stack->head;
+	while (cur != NULL)
+	{
+		if (cur->value == value)
+			return (1);
+		cur = cur->next;
+	}
+	return (0);
+}
+
+int	parse_number_token(char *token, t_stack *stack)
+{
+	int		value;
+	t_node	*node;
+
+	if (!is_valid_number(token))
+		return (1);
+	if (ft_atol_checked(token, &value))
+		return (1);
+	if (ft_stack_has_value(stack, value))
+		return (1);
+	node = ft_create_node(value);
+	if (!node)
+		return (1);
+	if (!ft_push_back(stack, node))
+	{
+		free(node);
+		return (1);
+	}
 	return (0);
 }

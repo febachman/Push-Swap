@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_flags.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: made-luc <made-luc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 14:06:41 by made-luc          #+#    #+#             */
-/*   Updated: 2026/07/01 16:23:02 by fbachman         ###   ########.fr       */
+/*   Updated: 2026/07/03 10:49:27 by made-luc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-//TODO: LIDAR COM CASO (./push_swap --bench --bench 3 2 1)
 
 void	init_parsing_config(t_parsing *parsing)
 {
