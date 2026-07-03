@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_flags.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: made-luc <made-luc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 14:06:41 by made-luc          #+#    #+#             */
-/*   Updated: 2026/07/01 14:08:48 by made-luc         ###   ########.fr       */
+/*   Updated: 2026/07/01 16:23:02 by fbachman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	init_parsing_config(t_parsing *parsing)
 {
 	parsing->strategy = ADAPTIVE;
 	parsing->bench = false;
-    parsing->has_strategy = false;
-    parsing->seen_number = false;
+	parsing->has_strategy = false;
+	parsing->seen_number = false;
 }
 
 int	parse_strategy_flag(char *arg, t_parsing *parsing)

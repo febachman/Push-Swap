@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: made-luc <made-luc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 13:22:56 by fbachman          #+#    #+#             */
-/*   Updated: 2026/07/01 14:06:11 by made-luc         ###   ########.fr       */
+/*   Updated: 2026/07/01 16:25:09 by fbachman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,21 +70,28 @@ void	ft_rra(t_stack *a);
 void	ft_rrb(t_stack *b);
 void	ft_rrr(t_stack *a, t_stack *b);
 
-//sorting operations | small stacks
-int		ft_find_min(t_stack *stack);
-void	ft_sort_three(t_stack *st_a);
-void	ft_sort_four(t_stack *a, t_stack *b);
-void	ft_sort_five(t_stack *a, t_stack *b);
-
 //populate stack
 t_node	*ft_create_node(int value);
 void	ft_init_stack(t_stack *stack);
 void	ft_clear_stack(t_stack *stack);
 void	ft_populate_stack(t_stack *stack_a, int *parsed_array, int array_size);
 
+//disorder
+double	ft_compute_disorder(t_stack *stack);
+void	ft_adaptive_strategy(t_stack *a, t_stack *b);
+
 //lst aux
 t_node	*ft_pop_node(t_stack *stack, t_node *node);
 int		ft_push_back(t_stack *stack, t_node *node);
 int		ft_push_front(t_stack *stack, t_node *node);
+
+//sorting operations | small stacks
+int		ft_find_min(t_stack *stack);
+void	ft_sort_three(t_stack *st_a);
+void	ft_sort_four(t_stack *a, t_stack *b);
+void	ft_sort_five(t_stack *a, t_stack *b);
+
+//sorting operations | simple algorithm
+void	ft_bubble_sort(t_stack *a);
 
 #endif

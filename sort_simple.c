@@ -1,42 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disorder_metric.c                                  :+:      :+:    :+:   */
+/*   sort_simple.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/27 13:07:57 by fbachman          #+#    #+#             */
-/*   Updated: 2026/06/27 16:17:06 by fbachman         ###   ########.fr       */
+/*   Created: 2026/07/01 14:30:05 by fbachman          #+#    #+#             */
+/*   Updated: 2026/07/01 16:04:10 by fbachman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-double	ft_compute_disorder(t_stack *stack)
+void	ft_bubble_sort(t_stack *a)
 {
-	t_node	*i;
-	t_node	*j;
-	long	mistakes;
-	long	total_pairs;
+	int	i;
+	int	j;
+	int	size;
 
-	if (!stack || stack->size < 2)
-		return (0.0);
-	mistakes = 0;
-	total_pairs = 0;
-	i = stack->head;
-	while (i != NULL)
+	if (!a || a->size < 2)
+		return ;
+	size = a->size;
+	i = 0;
+	while (i < size - 1)
 	{
-		j = i->next;
-		while (j != NULL)
+		j = 0;
+		while (j < size - 1)
 		{
-			total_pairs++;
-			if (i->value > j->value)
-				mistakes++;
-			j = j->next;
+			if (a->head->value > a->head->next->value)
+				ft_sa(a);
+			ft_ra(a);
+			j++;
 		}
-		i = i->next;
+		ft_ra(a);
+		i++;
 	}
-	if (total_pairs == 0)
-		return (0.0);
-	return ((double)mistakes / total_pairs);
 }
