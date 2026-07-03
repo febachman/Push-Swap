@@ -6,7 +6,7 @@
 /*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/27 13:07:57 by fbachman          #+#    #+#             */
-/*   Updated: 2026/07/03 10:48:28 by fbachman         ###   ########.fr       */
+/*   Updated: 2026/07/03 15:14:10 by fbachman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,16 @@ void	ft_adaptive_strategy(t_stack *a, t_stack *b)
 	double	disorder;
 
 	disorder = ft_compute_disorder(a);
-	if (disorder < 0.2)
+	if (a->size <= 3)
+		ft_sort_three(a);
+	else if (a->size == 4)
+		ft_sort_four(a, b);
+	else if (a->size == 5)
+		ft_sort_five(a, b);
+	else if (disorder < 0.2)
 		ft_bubble_sort(a);
-	else if (disorder < 0.5)
-		ft_medium_sort(a, b);
-	else
-		ft_complex_sort(a, b);
+	else if (disorder >= 0.2 && disorder < 0.5)
+		ft_chunk_sort(a, b);
+	// else
+	// 	ft_complex_sort(a, b);
 }

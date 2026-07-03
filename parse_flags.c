@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_flags.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: made-luc <made-luc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 14:06:41 by made-luc          #+#    #+#             */
-/*   Updated: 2026/07/03 10:49:27 by made-luc         ###   ########.fr       */
+/*   Updated: 2026/07/03 15:08:04 by fbachman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,22 @@ void	init_parsing_config(t_parsing *parsing)
 
 int	parse_strategy_flag(char *arg, t_parsing *parsing)
 {
-	if (ft_strcmp(arg, "--simple") == 0)
+	if (ft_strncmp(arg, "--simple", 8) == 0)
 	{
 		parsing->strategy = SIMPLE;
 		return (1);
 	}
-	else if (ft_strcmp(arg, "--medium") == 0)
+	else if (ft_strncmp(arg, "--medium", 8) == 0)
 	{
 		parsing->strategy = MEDIUM;
 		return (1);
 	}
-	else if (ft_strcmp(arg, "--complex") == 0)
+	else if (ft_strncmp(arg, "--complex", 9) == 0)
 	{
 		parsing->strategy = COMPLEX;
 		return (1);
 	}
-	else if (ft_strcmp(arg, "--adaptive") == 0)
+	else if (ft_strncmp(arg, "--adaptive", 10) == 0)
 	{
 		parsing->strategy = ADAPTIVE;
 		return (1);
@@ -49,7 +49,7 @@ int	parse_strategy_flag(char *arg, t_parsing *parsing)
 
 int	parse_bench_flag(char *arg, t_parsing *parsing)
 {
-	if (ft_strcmp(arg, "--bench") == 0)
+	if (ft_strncmp(arg, "--bench", 7) == 0)
 	{
 		parsing->bench = true;
 		return (1);

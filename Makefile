@@ -1,9 +1,13 @@
 NAME = push_swap
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I.
+CFLAGS = -Wall -Wextra -Werror -I. -I$(LIBFT_DIR)
 AR = ar
 ARFLAGS = rcs
-SRCS = PREENCHER!!!!!!!!
+SRCS = $(addsuffix .c, \
+        op_pop_node op_populate_stack op_push_back op_push_front \
+		op_push op_rotate op_rrotate op_swap \
+		parse_args parse_flags parse_main \
+		sort_disorder_metric sort_small sort_simple sort_medium)
 OBJS = $(SRCS:.c=.o)
 RM = rm -f
 
@@ -15,7 +19,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@make -C $(LIBFT_DIR)
 	@cp $(LIBFT) $(NAME)
-	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 	@echo "Compiled successfully! 🚀"
 
 %.o: %.c
