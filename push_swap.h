@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: made-luc <made-luc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 13:22:56 by fbachman          #+#    #+#             */
-/*   Updated: 2026/07/03 10:53:06 by made-luc         ###   ########.fr       */
+/*   Updated: 2026/07/03 14:46:35 by fbachman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,12 @@ void	ft_sort_five(t_stack *a, t_stack *b);
 
 //sorting operations | simple algorithm
 void	ft_bubble_sort(t_stack *a);
+
+//sorting operations | medium algorithm
+void	ft_chunk_sort(t_stack *a, t_stack *b);
+void	ft_phase_one(t_stack *a, t_stack *b, int chunk_size);
+void	ft_phase_two(t_stack *a, t_stack *b);
+int		ft_get_index(t_stack *a, t_stack *b, int value);
+int		ft_max_position(t_stack	*stack);
 
 #endif

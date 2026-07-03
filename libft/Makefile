@@ -10,7 +10,7 @@ SRCS = $(addsuffix .c, $(addprefix utils/, \
         ft_isalpha ft_isdigit ft_isalnum ft_isascii ft_isprint ft_toupper ft_tolower \
         ft_memcmp ft_calloc ft_memset ft_memchr ft_bzero ft_memcpy ft_memmove \
         ft_putchar_fd ft_putendl_fd ft_putnbr_fd ft_putstr_fd \
-        ft_atoi ft_itoa \
+        ft_atoi ft_itoa ft_sqrt\
         ft_lstsize ft_lstadd_back ft_lstadd_front ft_lstclear ft_lstdelone \
         ft_lstiter ft_lstlast ft_lstmap ft_lstnew)) \
        $(addsuffix .c, $(addprefix printf/, \

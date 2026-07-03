@@ -6,7 +6,7 @@
 /*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 11:54:30 by fbachman          #+#    #+#             */
-/*   Updated: 2026/06/17 12:02:17 by fbachman         ###   ########.fr       */
+/*   Updated: 2026/07/03 12:40:47 by fbachman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,6 @@ void	ft_print_ptr(unsigned long ptr, int *count);
 //utility functions
 int		ft_num_digits_signed(long nbr, int base);
 int		ft_num_digits_unsigned(unsigned long nbr, int base);
+int		ft_sqrt(int nb);
 
 #endif
