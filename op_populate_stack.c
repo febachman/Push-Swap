@@ -40,6 +40,7 @@ void	ft_init_stack(t_stack *stack)
 	stack->head = NULL;
 	stack->tail = NULL;
 	stack->size = 0;
+	stack->bench = NULL;
 }
 
 t_node	*ft_create_node(int value)

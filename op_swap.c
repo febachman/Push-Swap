@@ -29,6 +29,18 @@ void	ft_sa(t_stack *a)
 	if (ft_swap(a))
 		write(1, "sa\n", 3);
 }
+// void	ft_sa(t_stack *a)
+// {
+// 	if (ft_swap(a))
+// 	{
+// 		if (a->bench)
+// 		{
+// 			a->bench->sa++;
+// 			a->bench->total++;
+// 		}
+// 		write(1, "sa\n", 3);
+// 	}
+// }
 
 void	ft_sb(t_stack *b)
 {

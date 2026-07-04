@@ -18,6 +18,24 @@
 # include <limits.h>
 # include <stdio.h>
 
+//bench
+
+typedef struct s_bench
+{
+	int	total;
+	int	sa;
+	int	sb;
+	int	ss;
+	int	pa;
+	int	pb;
+	int	ra;
+	int	rb;
+	int	rr;
+	int	rra;
+	int	rrb;
+	int	rrr;
+}	t_bench;
+
 //structs
 typedef struct s_node
 {
@@ -31,6 +49,7 @@ typedef struct s_stack
 	t_node	*head;
 	t_node	*tail;
 	int		size;
+	t_bench	*bench;
 }			t_stack;
 
 //parsing
@@ -65,6 +84,11 @@ int		apply_strategy(t_parsing *parsing, t_stack *a, t_stack *b);
 void	free_split(char **tokens);
 int		parse_split_tokens(char **tokens, t_stack *a, t_parsing *parsing);
 int		parse_args(int argc, char **argv, t_stack *a, t_parsing *parsing);
+
+//bench
+
+void	init_bench(t_bench *bench);
+void	print_benchmark(t_parsing *parsing, t_bench *bench, double disorder);
 
 //operations
 int		ft_push(t_stack *dest, t_stack *src);
