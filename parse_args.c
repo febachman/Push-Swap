@@ -1,108 +1,102 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_args.c                                     :+:      :+:    :+:   */
+/*   parse_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: made-luc <made-luc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 14:06:41 by made-luc          #+#    #+#             */
-/*   Updated: 2026/07/03 09:59:46 by made-luc         ###   ########.fr       */
+/*   Updated: 2026/07/04 12:28:22 by made-luc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_valid_number(char *token)
+void	free_split(char **tokens)
 {
 	int	i;
 
 	i = 0;
-	if (!token || token[0] == '\0')
-		return (0);
-	if (token[i] == '+' || token[i] == '-')
-		i++;
-	if (token[i] == '\0')
-		return (0);
-	while (token[i] != '\0')
+	if (!tokens)
+		return ;
+	while (tokens[i])
 	{
-		if (!ft_isdigit(token[i]))
-			return (0);
+		free(tokens[i]);
 		i++;
 	}
-	return (1);
+	free(tokens);
 }
 
-static int	is_int_overflow(long num, int sign)
+int	parse_split_tokens(char **tokens, t_stack *a, t_parsing *parsing)
 {
-	if (sign > 0 && num > INT_MAX)
-		return (1);
-	if (sign < 0 && num > (long)INT_MAX + 1)
-		return (1);
-	return (0);
-}
+	int	i;
 
-int	ft_atol_checked(char *str, int *out)
-{
-	long	num;
-	int		sign;
-	int		i;
-
-	num = 0;
-	sign = 1;
 	i = 0;
-	if (!str || !out)
+	if (!tokens || !tokens[0])
 		return (1);
-	if (str[i] == '-' || str[i] == '+')
+	while (tokens[i])
 	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
-	}
-	while (str[i])
-	{
-		num = num * 10 + (str[i] - '0');
-		if (is_int_overflow(num, sign))
+		if (parse_number_token(tokens[i], a))
 			return (1);
+		parsing->seen_number = true;
 		i++;
 	}
-	*out = (int)(num * sign);
 	return (0);
 }
 
-int	ft_stack_has_value(t_stack *stack, int value)
+static int	parse_arg_nmb(char *arg, t_stack *a, t_parsing *parsing)
 {
-	t_node	*cur;
+	char	**tokens;
 
-	if (!stack)
+	tokens = ft_split(arg, ' ');
+	if (parse_split_tokens(tokens, a, parsing))
+	{
+		free_split(tokens);
+		return (1);
+	}
+	free_split(tokens);
+	return (0);
+}
+
+int	parse_args(int argc, char **argv, t_stack *a, t_parsing *parsing)
+{
+	int	i;
+	int	flag_result;
+
+	i = 1;
+	while (i < argc)
+	{
+		if (!argv[i] || argv[i][0] == '\0')
+			return (1);
+		flag_result = parse_flag(argv[i], parsing);
+		if (flag_result == -1)
+			return (1);
+		if (flag_result == 0 && parse_arg_nmb(argv[i], a, parsing))
+			return (1);
+		i++;
+	}
+	if (parsing->seen_number == false)
+		return (1);
+	return (0);
+}
+
+int	apply_strategy(t_parsing *parsing, t_stack *a, t_stack *b)
+{
+	if (!a || !b)
+		return (1);
+	if (a->size <= 1)
 		return (0);
-	cur = stack->head;
-	while (cur != NULL)
-	{
-		if (cur->value == value)
-			return (1);
-		cur = cur->next;
-	}
-	return (0);
-}
-
-int	parse_number_token(char *token, t_stack *stack)
-{
-	int		value;
-	t_node	*node;
-
-	if (!is_valid_number(token))
+	if (a->size <= 3)
+		ft_sort_three(a);
+	else if (a->size == 4)
+		ft_sort_four(a, b);
+	else if (a->size == 5)
+		ft_sort_five(a, b);
+	else if (parsing->strategy == SIMPLE)
+		ft_bubble_sort(a);
+	else if (parsing->strategy == MEDIUM)
+		ft_chunk_sort(a, b);
+	else
 		return (1);
-	if (ft_atol_checked(token, &value))
-		return (1);
-	if (ft_stack_has_value(stack, value))
-		return (1);
-	node = ft_create_node(value);
-	if (!node)
-		return (1);
-	if (!ft_push_back(stack, node))
-	{
-		free(node);
-		return (1);
-	}
 	return (0);
 }

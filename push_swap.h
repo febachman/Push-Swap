@@ -60,6 +60,10 @@ int		is_valid_number(char *token);
 int		ft_atol_checked(char *str, int *out);
 int		ft_stack_has_value(t_stack *stack, int value);
 int		parse_number_token(char *token, t_stack *stack);
+int		apply_strategy(t_parsing *parsing, t_stack *a, t_stack *b);
+
+void	free_split(char **tokens);
+int		parse_split_tokens(char **tokens, t_stack *a, t_parsing *parsing);
 int		parse_args(int argc, char **argv, t_stack *a, t_parsing *parsing);
 
 //operations
