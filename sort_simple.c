@@ -6,7 +6,7 @@
 /*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/01 14:30:05 by fbachman          #+#    #+#             */
-/*   Updated: 2026/07/01 16:04:10 by fbachman         ###   ########.fr       */
+/*   Updated: 2026/07/04 11:08:23 by fbachman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,18 @@ void	ft_bubble_sort(t_stack *a)
 	while (i < size - 1)
 	{
 		j = 0;
-		while (j < size - 1)
+		while (j < size - 1 - i)
 		{
 			if (a->head->value > a->head->next->value)
 				ft_sa(a);
 			ft_ra(a);
 			j++;
 		}
-		ft_ra(a);
+		while (j < size)
+		{
+			ft_ra(a);
+			j++;
+		}
 		i++;
 	}
 }
