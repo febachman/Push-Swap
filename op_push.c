@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_push.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: made-luc <made-luc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 14:27:57 by fbachman          #+#    #+#             */
-/*   Updated: 2026/06/26 18:11:41 by fbachman         ###   ########.fr       */
+/*   Updated: 2026/07/05 11:23:29 by made-luc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,25 @@ int	ft_push(t_stack *dest, t_stack *src)
 void	ft_pa(t_stack *a, t_stack *b)
 {
 	if (ft_push(a, b))
+	{	
+		if (a->bench)
+		{
+			a->bench->pa++;
+			a->bench->total++;
+		}
 		write(1, "pa\n", 3);
+	}
 }
 
 void	ft_pb(t_stack *a, t_stack *b)
 {
 	if (ft_push(b, a))
+	{
+		if (a->bench)
+		{
+			a->bench->pa++;
+			a->bench->total++;
+		}
 		write(1, "pb\n", 3);
+	}
 }

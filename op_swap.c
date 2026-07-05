@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: made-luc <made-luc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 14:28:04 by fbachman          #+#    #+#             */
-/*   Updated: 2026/07/01 14:04:23 by fbachman         ###   ########.fr       */
+/*   Updated: 2026/07/05 10:48:32 by made-luc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,27 @@ int	ft_swap(t_stack *stack)
 void	ft_sa(t_stack *a)
 {
 	if (ft_swap(a))
+	{
+		if (a->bench)
+		{
+			a->bench->sa++;
+			a->bench->total++;
+		}
 		write(1, "sa\n", 3);
+	}
 }
-// void	ft_sa(t_stack *a)
-// {
-// 	if (ft_swap(a))
-// 	{
-// 		if (a->bench)
-// 		{
-// 			a->bench->sa++;
-// 			a->bench->total++;
-// 		}
-// 		write(1, "sa\n", 3);
-// 	}
-// }
 
 void	ft_sb(t_stack *b)
 {
 	if (ft_swap(b))
+	{
+		if (b->bench)
+		{
+			b->bench->sb++;
+			b->bench->total++;
+		}
 		write(1, "sb\n", 3);
+	}
 }
 
 void	ft_ss(t_stack *a, t_stack *b)
@@ -54,6 +56,11 @@ void	ft_ss(t_stack *a, t_stack *b)
 	{
 		ft_swap(a);
 		ft_swap(b);
+		if (a->bench)
+		{
+			a->bench->ss++;
+			a->bench->total++;
+		}
 		write(1, "ss\n", 3);
 	}
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_args.c                                     :+:      :+:    :+:   */
+/*   bench.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: made-luc <made-luc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 14:06:41 by made-luc          #+#    #+#             */
-/*   Updated: 2026/07/03 09:59:46 by made-luc         ###   ########.fr       */
+/*   Updated: 2026/07/05 11:42:05 by made-luc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,30 @@ void	init_bench(t_bench *bench)
 	bench->rrr = 0;
 }
 
+static void	print_bench_line(char *name, int value)
+{
+	ft_putstr_fd("[bench] ", 2);
+	ft_putstr_fd(name, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putnbr_fd(value, 2);
+	ft_putstr_fd("\n", 2);
+}
+
+static void	print_operations(t_bench *bench)
+{
+	print_bench_line("sa", bench->sa);
+	print_bench_line("sb", bench->sb);
+	print_bench_line("ss", bench->ss);
+	print_bench_line("pa", bench->pa);
+	print_bench_line("pb", bench->pb);
+	print_bench_line("ra", bench->ra);
+	print_bench_line("rb", bench->rb);
+	print_bench_line("rr", bench->rr);
+	print_bench_line("rra", bench->rra);
+	print_bench_line("rrb", bench->rrb);
+	print_bench_line("rrr", bench->rrr);
+}
+
 void	print_benchmark(t_parsing *parsing, t_bench *bench, double disorder)
 {
 	int	percent;
@@ -42,12 +66,6 @@ void	print_benchmark(t_parsing *parsing, t_bench *bench, double disorder)
 		ft_putstr_fd("0", 2);
 	ft_putnbr_fd(percent % 100, 2);
 	ft_putstr_fd("%\n", 2);
-	ft_putstr_fd("[bench] total: ", 2);
-	ft_putnbr_fd(bench->total, 2);
-	ft_putstr_fd("\n", 2);
+	print_bench_line("total", bench->total);
+	print_operations(bench);
 }
-
-// operação em A       -> usa a->bench
-// operação em B       -> usa b->bench
-// operação nos dois   -> usa a->bench
-// push entre A e B    -> usa a->bench

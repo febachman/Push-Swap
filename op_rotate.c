@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_rotate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: made-luc <made-luc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 14:27:59 by fbachman          #+#    #+#             */
-/*   Updated: 2026/06/27 11:53:08 by fbachman         ###   ########.fr       */
+/*   Updated: 2026/07/05 10:56:18 by made-luc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,27 @@ int	ft_rotate(t_stack *stack)
 void	ft_ra(t_stack *a)
 {
 	if (ft_rotate(a))
+	{
+		if (a->bench)
+		{
+			a->bench->ra++;
+			a->bench->total++;
+		}
 		write(1, "ra\n", 3);
+	}
 }
 
 void	ft_rb(t_stack *b)
 {
 	if (ft_rotate(b))
+	{
+		if (b->bench)
+		{
+			b->bench->rb++;
+			b->bench->total++;
+		}
 		write(1, "rb\n", 3);
+	}
 }
 
 void	ft_rr(t_stack *a, t_stack *b)
@@ -42,6 +56,11 @@ void	ft_rr(t_stack *a, t_stack *b)
 	{
 		ft_rotate(a);
 		ft_rotate(b);
+		if (a->bench)
+		{
+			a->bench->rr++;
+			a->bench->total++;
+		}
 		write(1, "rr\n", 3);
 	}
 }
