@@ -28,28 +28,55 @@ void	init_bench(t_bench *bench)
 	bench->rrr = 0;
 }
 
-static void	print_bench_line(char *name, int value)
+static void	print_adaptive_complexity(double disorder)
 {
-	ft_putstr_fd("[bench] ", 2);
-	ft_putstr_fd(name, 2);
-	ft_putstr_fd(": ", 2);
-	ft_putnbr_fd(value, 2);
-	ft_putstr_fd("\n", 2);
+	if (disorder < 0.2)
+		ft_putstr_fd("adaptive / O(n^2)\n", 2);
+	else if (disorder < 0.5)
+		ft_putstr_fd("adaptive / O(n sqrt(n))\n", 2);
+	else
+		ft_putstr_fd("adaptive / O(n log n)\n", 2);
+}
+
+static void	print_strategy(t_parsing *parsing, double disorder)
+{
+	ft_putstr_fd("[bench] strategy: ", 2);
+	if (parsing->strategy == SIMPLE)
+		ft_putstr_fd("simple / O(n^2)\n", 2);
+	else if (parsing->strategy == MEDIUM)
+		ft_putstr_fd("medium / O(n sqrt(n))\n", 2);
+	else if (parsing->strategy == COMPLEX)
+		ft_putstr_fd("complex / O(n log n)\n", 2);
+	else
+		print_adaptive_complexity(disorder);
 }
 
 static void	print_operations(t_bench *bench)
 {
-	print_bench_line("sa", bench->sa);
-	print_bench_line("sb", bench->sb);
-	print_bench_line("ss", bench->ss);
-	print_bench_line("pa", bench->pa);
-	print_bench_line("pb", bench->pb);
-	print_bench_line("ra", bench->ra);
-	print_bench_line("rb", bench->rb);
-	print_bench_line("rr", bench->rr);
-	print_bench_line("rra", bench->rra);
-	print_bench_line("rrb", bench->rrb);
-	print_bench_line("rrr", bench->rrr);
+	ft_putstr_fd("[bench] sa: ", 2);
+	ft_putnbr_fd(bench->sa, 2);
+	ft_putstr_fd("  sb: ", 2);
+	ft_putnbr_fd(bench->sb, 2);
+	ft_putstr_fd("  ss: ", 2);
+	ft_putnbr_fd(bench->ss, 2);
+	ft_putstr_fd("  pa: ", 2);
+	ft_putnbr_fd(bench->pa, 2);
+	ft_putstr_fd("  pb: ", 2);
+	ft_putnbr_fd(bench->pb, 2);
+	ft_putstr_fd("\n", 2);
+	ft_putstr_fd("[bench] ra: ", 2);
+	ft_putnbr_fd(bench->ra, 2);
+	ft_putstr_fd("  rb: ", 2);
+	ft_putnbr_fd(bench->rb, 2);
+	ft_putstr_fd("  rr: ", 2);
+	ft_putnbr_fd(bench->rr, 2);
+	ft_putstr_fd("  rra: ", 2);
+	ft_putnbr_fd(bench->rra, 2);
+	ft_putstr_fd("  rrb: ", 2);
+	ft_putnbr_fd(bench->rrb, 2);
+	ft_putstr_fd("  rrr: ", 2);
+	ft_putnbr_fd(bench->rrr, 2);
+	ft_putstr_fd("\n", 2);
 }
 
 void	print_benchmark(t_parsing *parsing, t_bench *bench, double disorder)
@@ -66,6 +93,9 @@ void	print_benchmark(t_parsing *parsing, t_bench *bench, double disorder)
 		ft_putstr_fd("0", 2);
 	ft_putnbr_fd(percent % 100, 2);
 	ft_putstr_fd("%\n", 2);
-	print_bench_line("total", bench->total);
+	print_strategy(parsing, disorder);
+	ft_putstr_fd("[bench] total_ops: ", 2);
+	ft_putnbr_fd(bench->total, 2);
+	ft_putstr_fd("\n", 2);
 	print_operations(bench);
 }

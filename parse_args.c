@@ -80,9 +80,19 @@ int	parse_args(int argc, char **argv, t_stack *a, t_parsing *parsing)
 	return (0);
 }
 
-int	apply_strategy(t_parsing *parsing, t_stack *a, t_stack *b)
+static void	apply_adaptive(t_stack *a, t_stack *b, double disorder)
 {
-	if (!a || !b)
+	if (disorder < 0.2)
+		ft_bubble_sort(a);
+	else if (disorder < 0.5)
+		ft_chunk_sort(a, b);
+	else
+		ft_chunk_sort(a, b);
+}
+
+int	apply_strategy(t_parsing *parsing, t_stack *a, t_stack *b, double disorder)
+{
+	if (!parsing || !a || !b)
 		return (1);
 	if (a->size <= 1)
 		return (0);
@@ -96,6 +106,8 @@ int	apply_strategy(t_parsing *parsing, t_stack *a, t_stack *b)
 		ft_bubble_sort(a);
 	else if (parsing->strategy == MEDIUM)
 		ft_chunk_sort(a, b);
+	else if (parsing->strategy == ADAPTIVE)
+		apply_adaptive(a, b, disorder);
 	else
 		return (1);
 	return (0);

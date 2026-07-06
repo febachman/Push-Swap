@@ -39,7 +39,7 @@ int	main(int argc, char **argv)
 	if (parse_args(argc, argv, &a, &parsing))
 		return (ft_error_stacks(&a, &b));
 	disorder = ft_compute_disorder(&a);
-	if (apply_strategy(&parsing, &a, &b))
+	if (apply_strategy(&parsing, &a, &b, disorder))
 		return (ft_error_stacks(&a, &b));
 	if (parsing.bench)
 		print_benchmark(&parsing, &bench, disorder);
