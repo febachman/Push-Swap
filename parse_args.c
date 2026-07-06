@@ -6,7 +6,7 @@
 /*   By: made-luc <made-luc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 14:06:41 by made-luc          #+#    #+#             */
-/*   Updated: 2026/07/06 13:40:06 by made-luc         ###   ########.fr       */
+/*   Updated: 2026/07/06 16:19:41 by made-luc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static void	apply_adaptive(t_stack *a, t_stack *b, double disorder)
 	else if (disorder < 0.5)
 		ft_chunk_sort(a, b);
 	else
-		ft_quick_sort(a, b);
+		ft_chunklog_sort(a, b);
 }
 
 int		apply_strat(t_parsing *parse, t_stack *a, t_stack *b, double disorder)
@@ -109,7 +109,7 @@ int		apply_strat(t_parsing *parse, t_stack *a, t_stack *b, double disorder)
 	else if (parse->strategy == ADAPTIVE)
 		apply_adaptive(a, b, disorder);
 	else if (parse->strategy == COMPLEX)
-		ft_quick_sort(a, b);
+		ft_chunklog_sort(a, b);
 	else
 		return (1);
 	return (0);

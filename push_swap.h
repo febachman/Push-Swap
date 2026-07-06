@@ -6,7 +6,7 @@
 /*   By: made-luc <made-luc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 13:22:56 by fbachman          #+#    #+#             */
-/*   Updated: 2026/07/06 13:47:00 by made-luc         ###   ########.fr       */
+/*   Updated: 2026/07/06 16:18:48 by made-luc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ int		ft_max_position(t_stack	*stack);
 
 //sorting operations | complex algorithm
 int		ft_log2(int n);
-void	ft_quick_sort(t_stack *a, t_stack *b);
+void	ft_chunklog_sort(t_stack *a, t_stack *b);
 void	ft_phase_one_complex(t_stack *a, t_stack *b, int chunk_size);
 
 #endif

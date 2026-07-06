@@ -6,7 +6,7 @@
 /*   By: made-luc <made-luc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/27 13:07:57 by fbachman          #+#    #+#             */
-/*   Updated: 2026/07/06 13:39:43 by made-luc         ###   ########.fr       */
+/*   Updated: 2026/07/06 18:04:47 by made-luc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,5 @@ void	ft_adaptive_strategy(t_stack *a, t_stack *b)
 	else if (disorder >= 0.2 && disorder < 0.5)
 		ft_chunk_sort(a, b);
 	else
-		ft_quick_sort(a, b);
+		ft_chunklog_sort(a, b);
 }
