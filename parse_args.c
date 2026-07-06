@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_main.c                                       :+:      :+:    :+:   */
+/*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: made-luc <made-luc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 14:06:41 by made-luc          #+#    #+#             */
-/*   Updated: 2026/07/04 12:28:22 by made-luc         ###   ########.fr       */
+/*   Updated: 2026/07/06 07:37:08 by made-luc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static void	apply_adaptive(t_stack *a, t_stack *b, double disorder)
 		ft_chunk_sort(a, b);
 }
 
-int	apply_strategy(t_parsing *parsing, t_stack *a, t_stack *b, double disorder)
+int		apply_strat(t_parsing *parse, t_stack *a, t_stack *b, double disorder)
 {
 	if (!parsing || !a || !b)
 		return (1);
@@ -108,6 +108,8 @@ int	apply_strategy(t_parsing *parsing, t_stack *a, t_stack *b, double disorder)
 		ft_chunk_sort(a, b);
 	else if (parsing->strategy == ADAPTIVE)
 		apply_adaptive(a, b, disorder);
+	else if (parsing->strategy == COMPLEX)
+		ft_chunk_sort(a, b);
 	else
 		return (1);
 	return (0);

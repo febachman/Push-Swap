@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: made-luc <made-luc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 13:22:56 by fbachman          #+#    #+#             */
-/*   Updated: 2026/07/03 14:46:35 by fbachman         ###   ########.fr       */
+/*   Updated: 2026/07/06 07:36:25 by made-luc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int		is_valid_number(char *token);
 int		ft_atol_checked(char *str, int *out);
 int		ft_stack_has_value(t_stack *stack, int value);
 int		parse_number_token(char *token, t_stack *stack);
-int		apply_strategy(t_parsing *parsing, t_stack *a, t_stack *b, double disorder);
+int		apply_strat(t_parsing *parse, t_stack *a, t_stack *b, double disorder);
 
 void	free_split(char **tokens);
 int		parse_split_tokens(char **tokens, t_stack *a, t_parsing *parsing);
