@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: made-luc <made-luc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 13:22:56 by fbachman          #+#    #+#             */
-/*   Updated: 2026/07/06 13:35:19 by fbachman         ###   ########.fr       */
+/*   Updated: 2026/07/06 13:47:00 by made-luc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,23 @@
 # include <stdbool.h>
 # include <limits.h>
 # include <stdio.h>
+
+//bench struct
+typedef struct s_bench
+{
+	int	total;
+	int	sa;
+	int	sb;
+	int	ss;
+	int	pa;
+	int	pb;
+	int	ra;
+	int	rb;
+	int	rr;
+	int	rra;
+	int	rrb;
+	int	rrr;
+}	t_bench;
 
 //nodes and lists
 typedef struct s_node
@@ -33,14 +50,6 @@ typedef struct s_stack
 	int		size;
 	t_bench	*bench;
 }			t_stack;
-
-typedef struct s_quickchunk
-{
-	t_chunkpos	pos;
-	int			size;
-	int			minrank;
-	int			maxrank;
-}	t_quickchunk;
 
 //parsing
 typedef enum e_strategy
@@ -77,22 +86,6 @@ int		parse_args(int argc, char **argv, t_stack *a, t_parsing *parsing);
 //bench
 void	init_bench(t_bench *bench);
 void	print_benchmark(t_parsing *parsing, t_bench *bench, double disorder);
-
-typedef struct s_bench
-{
-	int	total;
-	int	sa;
-	int	sb;
-	int	ss;
-	int	pa;
-	int	pb;
-	int	ra;
-	int	rb;
-	int	rr;
-	int	rra;
-	int	rrb;
-	int	rrr;
-}	t_bench;
 
 //operations
 int		ft_push(t_stack *dest, t_stack *src);
@@ -145,12 +138,8 @@ int		ft_get_index(t_stack *a, t_stack *b, int value);
 int		ft_max_position(t_stack	*stack);
 
 //sorting operations | complex algorithm
-typedef enum e_chunkpos
-{
-	TOP_A,
-	BOTTOM_A,
-	TOP_B,
-	BOTTOM_B,
-}	t_chunkpos;
+int		ft_log2(int n);
+void	ft_quick_sort(t_stack *a, t_stack *b);
+void	ft_phase_one_complex(t_stack *a, t_stack *b, int chunk_size);
 
 #endif
