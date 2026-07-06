@@ -6,7 +6,7 @@
 /*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 13:22:56 by fbachman          #+#    #+#             */
-/*   Updated: 2026/07/06 13:34:06 by fbachman         ###   ########.fr       */
+/*   Updated: 2026/07/06 13:35:19 by fbachman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,6 @@ typedef struct s_stack
 	int		size;
 	t_bench	*bench;
 }			t_stack;
-//quicksort
-
-typedef enum e_chunkpos
-{
-	TOP_A,
-	BOTTOM_A,
-	TOP_B,
-	BOTTOM_B,
-}	t_chunkpos;
 
 typedef struct s_quickchunk
 {
@@ -154,5 +145,12 @@ int		ft_get_index(t_stack *a, t_stack *b, int value);
 int		ft_max_position(t_stack	*stack);
 
 //sorting operations | complex algorithm
+typedef enum e_chunkpos
+{
+	TOP_A,
+	BOTTOM_A,
+	TOP_B,
+	BOTTOM_B,
+}	t_chunkpos;
 
 #endif
