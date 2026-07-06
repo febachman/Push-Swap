@@ -6,7 +6,7 @@
 /*   By: made-luc <made-luc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 13:22:56 by fbachman          #+#    #+#             */
-/*   Updated: 2026/07/06 07:36:25 by made-luc         ###   ########.fr       */
+/*   Updated: 2026/07/06 13:28:56 by made-luc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,23 @@ typedef struct s_stack
 	int		size;
 	t_bench	*bench;
 }			t_stack;
+//quicksort
+
+typedef enum e_chunkpos
+{
+	TOP_A,
+	BOTTOM_A,
+	TOP_B,
+	BOTTOM_B,
+}	t_chunkpos;
+
+typedef struct s_quickchunk
+{
+	t_chunkpos	pos;
+	int			size;
+	int			minrank;
+	int			maxrank;
+}	t_quickchunk;
 
 //parsing
 
