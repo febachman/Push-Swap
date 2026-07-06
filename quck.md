@@ -199,3 +199,7 @@ operações duplas
 remoção de operações inúteis
 
 O subject aceita Quick Sort como estratégia complexa O(n log n) usando particionamento com stacks.
+
+
+DIVISAO DE FUNCOES
+- definir tamanho chunk_size

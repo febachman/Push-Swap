@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: made-luc <made-luc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 13:22:56 by fbachman          #+#    #+#             */
-/*   Updated: 2026/07/06 07:36:25 by made-luc         ###   ########.fr       */
+/*   Updated: 2026/07/06 13:25:23 by fbachman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,7 @@
 # include <limits.h>
 # include <stdio.h>
 
-//bench
-
-typedef struct s_bench
-{
-	int	total;
-	int	sa;
-	int	sb;
-	int	ss;
-	int	pa;
-	int	pb;
-	int	ra;
-	int	rb;
-	int	rr;
-	int	rra;
-	int	rrb;
-	int	rrr;
-}	t_bench;
-
-//structs
+//nodes and lists
 typedef struct s_node
 {
 	int				value;
@@ -53,7 +35,6 @@ typedef struct s_stack
 }			t_stack;
 
 //parsing
-
 typedef enum e_strategy
 {
 	SIMPLE,
@@ -86,9 +67,24 @@ int		parse_split_tokens(char **tokens, t_stack *a, t_parsing *parsing);
 int		parse_args(int argc, char **argv, t_stack *a, t_parsing *parsing);
 
 //bench
-
 void	init_bench(t_bench *bench);
 void	print_benchmark(t_parsing *parsing, t_bench *bench, double disorder);
+
+typedef struct s_bench
+{
+	int	total;
+	int	sa;
+	int	sb;
+	int	ss;
+	int	pa;
+	int	pb;
+	int	ra;
+	int	rb;
+	int	rr;
+	int	rra;
+	int	rrb;
+	int	rrr;
+}	t_bench;
 
 //operations
 int		ft_push(t_stack *dest, t_stack *src);
@@ -139,5 +135,7 @@ void	ft_phase_one(t_stack *a, t_stack *b, int chunk_size);
 void	ft_phase_two(t_stack *a, t_stack *b);
 int		ft_get_index(t_stack *a, t_stack *b, int value);
 int		ft_max_position(t_stack	*stack);
+
+//sorting operations | complex algorithm
 
 #endif
