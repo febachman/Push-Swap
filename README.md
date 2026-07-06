@@ -109,39 +109,46 @@ When confronted with heavily randomized, chaotic, or completely reversed dataset
 
 ### Compilation & Installation
 
-The project includes a robust, automated dependency tracking Makefile that compiles an executable binary alongside your `libft` library.
+The project includes a robust, automated dependency tracking Makefile that compiles an executable binary alongside a `libft` library.
 
-To compile the program, clone the repository and run:
+To install and compile the codebase, clone the repository and run the following command in your terminal:
+
 ```bash
 make
 ```
 
+Makefile Command Reference:
+* make / make all: Compiles the push_swap executable using strict compiler flags (-Wall -Wextra -Werror).
+* make clean: Removes all intermediate object (.o) files from both the main project and libft.
+* make fclean: Executes clean and completely deletes the compiled binaries and library archives (.a).
+* make re: Performs a clean re-compilation of the entire project from scratch.
+
 ### Repository Structure
-The project architecture keeps sorting algorithms cleanly separated from node manipulation routines:
+The project architecture keeps sorting algorithms cleanly separated from node manipulation routines and parsing workflows:
 
-op_pop_node.c / op_push.c / op_rotate.c / op_swap.c (Stack Manipulations)
-
-parse_main.c / parse_args.c / parse_flags.c (Input Validation)
-
-sort_disorder_metric.c (Strategy Orchestrator)
-
-sort_medium.c (The Hyrbid Chunk Sorting Codebase)
+* **Stack Manipulations:** op_populate_stack / op_pop_node / op_push_back / op_push_front
+* **Stack Operations:** op_push / op_rotate / op_rrotate / op_swap
+* **Input Validation:** parse_args / parse_bench / parse_flags / parse_nbr
+* **Strategy Orchestrator:** sort_disorder_metric
+* **Sorting Algorithms:** sort_small / sort_simple / sort_medium / sort_complex
 
 ### Usage & Examples
 To execute the program, pass a random list of unique integers as arguments:
 
 ```bash
-ARG="45 0 -3 12 100 5" && ./push_swap $ARG
+# Define a mixed set of integers and pass it to push_swap
+ARG="45 0 -3 12 100 5"
+./push_swap $ARG
 ```
-Expected Output
-The program outputs the list of standard instructions. You can pipe the result straight into a line counter to verify performance metrics:
+*Expected Output:* The program outputs the amount of standard instructions.
 
-```bash
-./push_swap 3 2 1 4 5 | wc -l
-```
+## Resources
 
-Resources
-References
+### References
+* [Medium] - (https://medium.com/@ayogun/push-swap-c1f5d2d41e97)
+* [Medium] - (https://medium.com/@ulysse.gks/push-swap-in-less-than-4200-operations-c292f034f6c0)
+* [Medium] - (https://medium.com/@twof/on-the-optimization-of-bubble-sort-e1096d93d478)
+* [Medium] - (https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a)
 
 ### AI Usage
 Mathematical Tuning: Assisted in developing the integer-safe scaling formula to eliminate float dependency overhead inside the chunk allocation blocks.

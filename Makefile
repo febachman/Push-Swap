@@ -7,7 +7,7 @@ SRCS = $(addsuffix .c, \
         op_pop_node op_populate_stack op_push_back op_push_front \
 		op_push op_rotate op_rrotate op_swap \
 		parse_args parse_bench parse_flags parse_nbr main\
-		sort_disorder_metric sort_small sort_simple sort_medium)
+		sort_disorder_metric sort_small sort_simple sort_medium sort_complex)
 OBJS = $(SRCS:.c=.o)
 RM = rm -f
 
