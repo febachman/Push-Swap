@@ -6,7 +6,7 @@
 /*   By: made-luc <made-luc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 14:02:11 by made-luc          #+#    #+#             */
-/*   Updated: 2026/07/05 11:27:19 by made-luc         ###   ########.fr       */
+/*   Updated: 2026/07/06 08:05:35 by made-luc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int argc, char **argv)
 	if (parse_args(argc, argv, &a, &parsing))
 		return (ft_error_stacks(&a, &b));
 	disorder = ft_compute_disorder(&a);
-	if (apply_strategy(&parsing, &a, &b, disorder))
+	if (apply_strat(&parsing, &a, &b, disorder))
 		return (ft_error_stacks(&a, &b));
 	if (parsing.bench)
 		print_benchmark(&parsing, &bench, disorder);

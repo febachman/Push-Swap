@@ -6,7 +6,7 @@
 /*   By: made-luc <made-luc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 14:06:41 by made-luc          #+#    #+#             */
-/*   Updated: 2026/07/06 07:37:08 by made-luc         ###   ########.fr       */
+/*   Updated: 2026/07/06 08:04:17 by made-luc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static void	apply_adaptive(t_stack *a, t_stack *b, double disorder)
 
 int		apply_strat(t_parsing *parse, t_stack *a, t_stack *b, double disorder)
 {
-	if (!parsing || !a || !b)
+	if (!parse || !a || !b)
 		return (1);
 	if (a->size <= 1)
 		return (0);
@@ -102,13 +102,13 @@ int		apply_strat(t_parsing *parse, t_stack *a, t_stack *b, double disorder)
 		ft_sort_four(a, b);
 	else if (a->size == 5)
 		ft_sort_five(a, b);
-	else if (parsing->strategy == SIMPLE)
+	else if (parse->strategy == SIMPLE)
 		ft_bubble_sort(a);
-	else if (parsing->strategy == MEDIUM)
+	else if (parse->strategy == MEDIUM)
 		ft_chunk_sort(a, b);
-	else if (parsing->strategy == ADAPTIVE)
+	else if (parse->strategy == ADAPTIVE)
 		apply_adaptive(a, b, disorder);
-	else if (parsing->strategy == COMPLEX)
+	else if (parse->strategy == COMPLEX)
 		ft_chunk_sort(a, b);
 	else
 		return (1);
