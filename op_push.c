@@ -41,10 +41,10 @@ void	ft_pb(t_stack *a, t_stack *b)
 {
 	if (ft_push(b, a))
 	{
-		if (a->bench)
+		if (b->bench)
 		{
-			a->bench->pa++;
-			a->bench->total++;
+			b->bench->pb++;
+			b->bench->total++;
 		}
 		write(1, "pb\n", 3);
 	}

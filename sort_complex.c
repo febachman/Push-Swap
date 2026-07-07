@@ -30,7 +30,6 @@ void	ft_chunklog_sort(t_stack *a, t_stack *b)
 
 	total = a->size;
 	chunk_size = (total / ft_log2(total)) * 6 / 10;
-	ft_printf("chunk_size: %d\n", chunk_size);
 	if (chunk_size <= 0)
 		chunk_size = 1;
 	ft_phase_one_complex(a, b, chunk_size);

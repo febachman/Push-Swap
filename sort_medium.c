@@ -19,9 +19,10 @@ void	ft_chunk_sort(t_stack *a, t_stack *b)
 {
 	int	chunk_size;
 
-	chunk_size = (ft_sqrt(a->size) * 15 / 10) + (a->size / 100);
-	if (chunk_size <= 0)
-		chunk_size = 1;
+	if (a->size <= 100)
+		chunk_size = 18;
+	else
+		chunk_size = 45;
 	ft_phase_one(a, b, chunk_size);
 	ft_phase_two(a, b);
 }

@@ -142,4 +142,6 @@ int		ft_log2(int n);
 void	ft_chunklog_sort(t_stack *a, t_stack *b);
 void	ft_phase_one_complex(t_stack *a, t_stack *b, int chunk_size);
 
+int	ft_is_sorted(t_stack *stack);
+
 #endif
