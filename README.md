@@ -26,7 +26,7 @@ This repository features an intelligent **Adaptive Strategy** that profiles the 
 * **Small Stacks ($\leq 5$ elements):** Handled via optimized hardcoded logic (`ft_sort_three`, `ft_sort_four`, `ft_sort_five`).
 * **Low Disorder ($< 20\%$ disorder):** Handled via a so-called *simple algorithm* in a $O(n^2)$ time (`ft_bubble_sort`).
 * **Medium Disorder ($<= 20\%$ disorder $< 50\%$):** Handled via a so-called *medium algorithm* in a $O(n√n)$ time (`ft_chunk_sort`).
-* **High Disorder (disorder $>= 50\%$):** Managed by (`ft_quick_sort`), an algorithm adaptation with stack partitioning run in  $O(n log n)$ time.
+* **High Disorder (disorder $>= 50\%$):** Managed by (`ft_chunklog_sort`), an algorithm adaptation with stack partitioning run in  $O(n log n)$ time.
 
 ---
 
@@ -75,9 +75,7 @@ For moderately chaotic sets, the program deploys a customized **Chunk Sort** tha
 * **Controled Entropy (A->B)**: in this phase, it is not imporant if a chunk of n numbers is perfectly sorted inside Stack B, it is only relevant that those numbers are isolated from the rest of the database
 	* *lower window segment:* If an item fits the lower half of the sliding boundary, it is pushed to Stack B and immediately rotated (`ft_rb`)
 	* *upper window segment:* If an item fits the upper half of the boundary, it is simply pushed (`ft_pb`)
-	* *the hourglass/butterfly effect mechanics* -> This structural distribution forces smaller values to the bottom of Stack B and larger values to the top, forming an organized **hourglass shape**. This controlled distribution guarantees that returning items to Stack A later remains extremely cheap. when pushing from Stack A to Stack B, the algorithm calculates a sliding window size driven by a custom mathematical scaling formula:
-
-$$\text{chunk\_size} = \sqrt{n} \times 1.5 + (n \times 0.01)$$
+	* *the hourglass/butterfly effect mechanics* -> This structural distribution forces smaller values to the bottom of Stack B and larger values to the top, forming an organized **hourglass shape**. This controlled distribution guarantees that returning items to Stack A later remains extremely cheap. when pushing from Stack A to Stack B, the algorithm calculates a sliding window size driven by a custom mathematical scaling formula
 * **Soft Landing (B->A)**: due to controlled entropy part, Stack B is now a structured pile. When looking for the max element to push back to Stack A, the max element will almost always be very close to either the top or the bottom of Stack B. Instead of searching through n elements, the search space for the next largest element is reduced because the chunks act as a filter to bring the max element to the top of Stack B. To calculate the shortest path:
 	* if it's closer to the top: rb
 	* if it's closer to the bottom: rrb
@@ -98,10 +96,23 @@ $$\text{Total Cost} = Cost_of_A->B + Cost_of_B->A$$
 ---
 
 ### Complex Algorithm
-When confronted with heavily randomized, chaotic, or completely reversed datasets, heuristic chunk sizing becomes less efficient. The program instead switches to a strict partitioning model.
+For massive chaotic sets (e.g., 500+ elements), hardcoded chunk limits break down. To counteract this, the program deploys a Logarithmically Scaled Chunk Sort that dynamically calculates an optimized sliding window to minimize rotations.
 
-* **Stack-Based Quicksort (`ft_quick_sort`):** This adaptation uses exact mathematical medians to slice the dataset into highly predictable blocks. Stack A is bisected around a pivot; values lower than the pivot are pushed to Stack B, while larger values remain or rotate in Stack A.
-* **Divide and Conquer:** This process recursively divides the problem space into progressively smaller sub-stacks. By establishing absolute, rigid boundaries between data subsets, it eliminates the variance of heuristic chunk windows, keeping worst-case operation counts strictly bounded and deterministic.
+#### Theoretical Deepening
+* **Logarithmic Scaling Math:** Hardcoding a static chunk size (like 45) causes the operation count to scale exponentially on very large lists. To find the sweet spot between Phase 1 filtering and Phase 2 retrieval, the algorithm uses a base-2 logarithm scaling formula. This dynamically adjusts the window size relative to the size of the dataset, keeping total operations well below the strict evaluation benchmarks.
+$$\text{Chunk Size} = \left(\frac{N}{\log_2(N)}\right) \times \frac{6}{10}$$
+* **Controlled Entropy & The Hourglass Structure (A $\rightarrow$ B):** Rather than enforcing strict order early on, Phase 1 splits values into isolated numeric windows.
+	* *lower window segment:* If an element fits into the lower half of the active sliding boundary, it is pushed to Stack B and immediately rotated (`ft_rb`), sending it to the bottom of the stack.
+	* *upper window segment:* If it fits the upper half of the boundary, it is simply pushed (`ft_pb`) to the top of Stack B.This split forces smaller values to the bottom and larger values to the top of Stack B, generating an organized hourglass shape
+* **Soft Landing (B $\rightarrow$ A):** Because Stack B has been shaped into an hourglass, the global maximum elements naturally gravitate toward the extreme ends (the very top or very bottom of Stack B). The search space is radically reduced. The algorithm calculates the shortest path to bring the maximum element to the top:
+	* If it is closer to the top: rotate (rb).
+	* If it is closer to the bottom: reverse rotate (rrb)Once it reaches the top, it is pushed back (pa), cleanly rebuilding a sorted Stack A from highest to lowest
+	
+### Step-by-Step Logic
+[Stack A] ---> (Dynamic Log Window Check) ---> [Stack B (Hourglass Shape)] ---> (Shortest Path rb/rrb) ---> [Stack A (Sorted)]
+* **Dynamic Scaling Calculation (ft_chunklog_sort):** The program checks the current size of Stack A and processes it through the ft_log2 function to determine an optimized, mathematically balanced chunk_size.
+* **Phase One Streaming (ft_phase_one_complex):** Elements are evaluated from Stack A. If they fall inside the current dynamically shifting index range ($i$ to $i + \text{chunk\_size}$), they are pushed into Stack B's dual-layered hourglass structure. Elements outside the window are rotated to the back of Stack A via ft_ra.
+* **Phase Two Reconstruction (ft_phase_two):** The program recursively scans Stack B for the maximum global rank, rotates via the absolute shortest path (rb vs rrb), and restores elements onto Stack A in perfect ascending order.
 
 ---
 
@@ -149,6 +160,7 @@ ARG="45 0 -3 12 100 5"
 * [Medium] - (https://medium.com/@ulysse.gks/push-swap-in-less-than-4200-operations-c292f034f6c0)
 * [Medium] - (https://medium.com/@twof/on-the-optimization-of-bubble-sort-e1096d93d478)
 * [Medium] - (https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a)
+* [GeeksForGeeks] - (https://www.geeksforgeeks.org/dsa/quick-sort-algorithm/) 
 
 ### AI Usage
 Mathematical Tuning: Assisted in developing the integer-safe scaling formula to eliminate float dependency overhead inside the chunk allocation blocks.
