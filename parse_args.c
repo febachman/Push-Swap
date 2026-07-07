@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_args.c                                       :+:      :+:    :+:   */
+/*   parse_args_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: made-luc <made-luc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 14:06:41 by made-luc          #+#    #+#             */
-/*   Updated: 2026/07/06 16:19:41 by made-luc         ###   ########.fr       */
+/*   Updated: 2026/07/07 07:53:20 by fbachman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,41 +76,6 @@ int	parse_args(int argc, char **argv, t_stack *a, t_parsing *parsing)
 		i++;
 	}
 	if (parsing->seen_number == false)
-		return (1);
-	return (0);
-}
-
-static void	apply_adaptive(t_stack *a, t_stack *b, double disorder)
-{
-	if (disorder < 0.2)
-		ft_bubble_sort(a);
-	else if (disorder < 0.5)
-		ft_chunk_sort(a, b);
-	else
-		ft_chunklog_sort(a, b);
-}
-
-int		apply_strat(t_parsing *parse, t_stack *a, t_stack *b, double disorder)
-{
-	if (!parse || !a || !b)
-		return (1);
-	if (a->size <= 1)
-		return (0);
-	if (a->size <= 3)
-		ft_sort_three(a);
-	else if (a->size == 4)
-		ft_sort_four(a, b);
-	else if (a->size == 5)
-		ft_sort_five(a, b);
-	else if (parse->strategy == SIMPLE)
-		ft_bubble_sort(a);
-	else if (parse->strategy == MEDIUM)
-		ft_chunk_sort(a, b);
-	else if (parse->strategy == ADAPTIVE)
-		apply_adaptive(a, b, disorder);
-	else if (parse->strategy == COMPLEX)
-		ft_chunklog_sort(a, b);
-	else
 		return (1);
 	return (0);
 }

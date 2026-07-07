@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: made-luc <made-luc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 13:22:56 by fbachman          #+#    #+#             */
-/*   Updated: 2026/07/06 16:18:48 by made-luc         ###   ########.fr       */
+/*   Updated: 2026/07/07 07:49:12 by fbachman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,6 @@ int		ft_log2(int n);
 void	ft_chunklog_sort(t_stack *a, t_stack *b);
 void	ft_phase_one_complex(t_stack *a, t_stack *b, int chunk_size);
 
-int	ft_is_sorted(t_stack *stack);
+int		ft_is_sorted(t_stack *stack);
 
 #endif

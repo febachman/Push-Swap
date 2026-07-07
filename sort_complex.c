@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_complex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: made-luc <made-luc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fbachman <fbachman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/06 12:44:02 by fbachman          #+#    #+#             */
-/*   Updated: 2026/07/06 17:39:32 by made-luc         ###   ########.fr       */
+/*   Updated: 2026/07/07 07:51:11 by fbachman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@ int	ft_log2(int n)
 	int	log;
 
 	log = 0;
-	while (n >>= 1)
+	while (n > 1)
+	{
+		n >>= 1;
 		log++;
+	}
 	return (log);
 }
 
-#include <stdio.h>
 void	ft_chunklog_sort(t_stack *a, t_stack *b)
 {
 	int	chunk_size;
